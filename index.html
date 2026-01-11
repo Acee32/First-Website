@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Romantic New Year 💖</title>
+<style>
+
+
+
+/* ===========================
+   Reset & Basic Styles
+=========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  height: auto;
+  background: linear-gradient(to bottom, #ffd6e0 0%, #ffb3c6 100%);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ===========================
+   Password Screen
+=========================== */
+#password-screen {
+  text-align: center;
+  background: rgba(255,255,255,0.9);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(255,192,203,0.6);
+  position: relative;
+  z-index: 10;
+  margin-top: 50px;
+}
+
+#password-screen h1 {
+  font-family: 'Cursive', sans-serif;
+  color: #ff4d6d;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+#password-screen p {
+  font-size: 1.2rem;
+  color: #ff3366;
+  margin-bottom: 20px;
+}
+
+#passwordInput {
+  padding: 10px 15px;
+  font-size: 1.1rem;
+  border: 2px solid #ff4d6d;
+  border-radius: 10px;
+  outline: none;
+  margin-bottom: 10px;
+}
+
+#enterBtn {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 10px;
+  background: #ff4d6d;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#enterBtn:hover {
+  background: #ff1a4d;
+  transform: scale(1.05);
+}
+
+#error {
+  margin-top: 15px;
+  font-size: 1rem;
+  color: #ff3366;
+}
+
+/* ===========================
+   Floating Emojis
+=========================== */
+#floating-emojis-main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 5;
+}
+
+.emoji {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.8;
+  user-select: none;
+}
+
+.emoji.floating {
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
+
+/* ===========================
+   Main Content
+=========================== */
+#content {
+  text-align: center;
+  padding: 100px 20px;
+  position: relative;
+  z-index: 1;
+  display: none;
+}
+
+#content h1 {
+  font-family: 'Cursive', sans-serif;
+  color: #ff3366;
+  font-size: 3rem;
+  margin-bottom: 100px;
+}
+
+/* ===========================
+   Envelope Section
+=========================== */
+#envelope {
+  position: relative;
+  margin: 1200px auto;
+  cursor: pointer;
+}
+
+.envelopeEmoji {
+  font-size: 5rem;
+  display: inline-block;
+  animation: floatEnvelope 2s ease-in-out infinite alternate;
+  transition: transform 0.3s ease;
+}
+
+.envelopeMessage {
+  color: #ff3366;
+  margin-top: 10px;
+  font-size: 1.2rem;
+}
+
+.hiddenLetter.loveNote {
+  display: none;
+  max-width: 360px;
+  margin: 60px auto 0;
+  padding: 25px 30px;
+  background: #fffaf3;
+  border-radius: 15px;
+  border: 2px solid #ff4d6d;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  text-align: center;
+  color: #ff3366;
+  font-family: 'Cursive', sans-serif;
+  font-size: 1.2rem;
+  position: relative;
+  z-index: 30;
+}
+
+.letterTop {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.letterText {
+  line-height: 1.6;
+}
+
+/* ===========================
+   Flower Boque Section
+=========================== */
+#boque {
+  text-align: center;
+  margin: 200px auto;
+}
+
+.flowerBoque {
+  font-size: 6rem;
+  cursor: pointer;
+  display: inline-block;
+  transition: transform 0.3s ease;
+  animation: floatBoque 2s ease-in-out infinite alternate;
+  text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff1493;
+}
+
+.boqueText {
+  font-family: 'Cursive', sans-serif;
+  color: #ff3366;
+  font-size: 2rem;
+  margin-top: 20px;
+  text-shadow: 0 0 8px #ffb6c1, 0 0 12px #ff69b4;
+}
+
+/* ===========================
+   Animations
+=========================== */
+@keyframes floatEnvelope {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(-5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes explode {
+  0% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.5) rotate(15deg); }
+  100% { transform: scale(0) rotate(360deg); }
+}
+
+@keyframes popLetter {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+@keyframes floatPaper {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.emoji.explosion {
+  position: absolute;
+  font-size: 2.5rem;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 8px #ff69b4) drop-shadow(0 0 10px #ff1493);
+  animation: floatUpShort linear forwards;
+}
+
+@keyframes floatUpShort {
+  0%   { transform: translate(0,0) rotate(0deg); opacity: 1; }
+  50%  { transform: translate(var(--dx), var(--dy)) rotate(var(--rotate)) scale(var(--scale)); opacity: 0.8; }
+  100% { transform: translate(calc(var(--dx)*1.2), calc(var(--dy)*1.2)) rotate(calc(var(--rotate)*2)) scale(var(--scale)); opacity: 0; }
+}
+
+@keyframes floatBoque {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(-5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* ===========================
+   Responsive
+=========================== */
+@media (max-width: 600px) {
+  #content h1 { font-size: 6vw; }
+  .hiddenLetter { font-size: 4vw; }
+  .envelopeEmoji { font-size: 4rem; }
+  .emoji { font-size: 1.8rem; }
+  .flowerBoque { font-size: 5rem; }
+  .boqueText { font-size: 1.5rem; }
+}
+</style>
+</head>
+<body>
+    <!-- Background Music (hidden) -->
+  <audio id="bgMusic" src="music/song.mp3"></audio>
+
+
+
+<!-- Floating emojis -->
+<div id="floating-emojis-main"></div>
+
+<!-- Password Screen -->
+<div id="password-screen">
+  <h1>Enter the Password 💌</h1>
+  <p>Hint: It's something you know 😉</p>
+  <input type="text" id="passwordInput" placeholder="Type password here">
+  <button id="enterBtn">Enter</button>
+  <p id="error"></p>
+</div>
+
+
+
+
+<!-- Main Content -->
+<div id="content">
+  <h1>Yieee, love mo pala ako? 😏</h1>
+
+  <!-- Envelope Section -->
+  <div id="envelope">
+    <div class="explosionZone"></div>
+    <div class="envelopeEmoji">💌</div>
+    <p class="envelopeMessage">Letter for you ✉️</p>
+    <div class="hiddenLetter loveNote">
+      <div class="letterTop">🌻</div>
+      <p class="letterText">
+        For my Damulag<br><br>
+       I love you more than words can ever fully express. Every moment with you feels like a blessing. Thank you for the memories we shared, the love, the kulitan, and even the lessons. 
+
+I know i am not the best version of myself yet, but i want to keep growing with you, sharing our dreams, overcoming challenges, and creating more and more memories toghether
+
+I love you, not just for who you are, but for the way you make every moment feel like home.
+      </p>
+    </div>
+  </div>
+
+  <!-- Flower Boque Section -->
+  <div id="boque">
+    <div class="flowerBoque">💐</div>
+    <div class="boqueText">Flowers for you</div>
+  </div>
+
+
+
+<!-- ===========================
+     Gift Box Section with Flip
+=========================== -->
+<div id="gift-section" style="text-align:center; margin:200px auto; position:relative; z-index:2;">
+  <div class="giftBox" id="giftBox">🎁</div>
+  <p class="giftLabel">Our first memories together</p>
+
+  <div class="memoryContainer" id="memoryContainer" style="display:none; margin-top:30px;">
+    <!-- Memory 1 -->
+    <div class="memoryCard">
+      <img src="image/image1.jpg" alt="Memory 1" class="memoryImg">
+      <p class="memoryText">Our first laugh 💕
+
+        From the moment we met, Something about me change. You showed me how comforting it is to talk with someone. We may not know
+        what the future holds but whatever happend, i will be always and forever grateful that i meet someone like you.
+      
+      </p>
+    </div>
+
+<!-- Memory 2 (middle, clickable flip) -->
+<div class="memoryCard flipCard" id="flipCard">
+  <div class="flipInner">
+    <div class="flipFront">
+      <img src="image/image2.jpg" alt="Memory 2" class="memoryImg">
+    </div>
+    <div class="flipBack">
+      <p class="memoryText">🎆🚀🎇
+        fire works
+      </p>
+    </div>
+  </div>
+  <!-- Message below, like the others -->
+  <p class="memoryText">Your gayuma⭐
+
+    I may not say this often, but i really appreciate every updates i get from you,The more i learn about you the more i fall in love with you,
+    every small details makes me feel connected to you even with the distance that seperates us. This distance between us is the thing that makes
+    me overthink, kasi ang layo baka ma paano kana jan, or if one day you found someone better since you're so pretty naman kasi kaya dumadami ka
+    agaw ko. Pero you always make up by giving me assurance and i am Thankfull. Thank you shai.
+
+  </p>
+</div>
+
+    <!-- Memory 3 -->
+    <div class="memoryCard">
+      <img src="image/image3.jpg" alt="Memory 3" class="memoryImg">
+      <p class="memoryText">Every moment ⭐
+        
+        I didn't think someone could make me feel like this, until i found you. Every late night talks it feels like
+        it's just the two of us every. Every second that we spent together, I realized how lucky i am.
+      
+      </p>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Gift Box */ 
+.giftBox {
+  font-size: 6rem;
+  cursor: pointer;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.giftBox.shake {
+  animation: shake 0.4s;
+}
+
+.giftBox.explode {
+  animation: explodeGift 0.5s forwards;
+}
+
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(15deg); }
+  50% { transform: rotate(-15deg); }
+  75% { transform: rotate(10deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes explodeGift {
+  0% { transform: scale(1) rotate(0deg); opacity:1; }
+  100% { transform: scale(0) rotate(360deg); opacity:0; }
+}
+
+/* Memories */
+.memoryContainer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.memoryCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.memoryImg {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 15px;
+  border: 2px solid #ff4d6d;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.memoryImg:hover {
+  transform: scale(1.1);
+}
+
+.memoryText {
+  margin-top: 10px;
+  font-family: 'Cursive', sans-serif;
+  color: #ff3366;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+/* ===========================
+   Flip Card CSS (Middle Card)
+=========================== */
+.flipCard {
+  perspective: 1000px;
+}
+
+.flipInner {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.flipCard.flipped .flipInner {
+  transform: rotateY(180deg);
+}
+
+.flipFront, .flipBack {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  backface-visibility: hidden;
+  border-radius: 15px;
+  border: 2px solid #ff4d6d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flipBack {
+  background: #fff0f5;
+  color: #ff3366;
+  transform: rotateY(180deg);
+  font-family: 'Cursive', sans-serif;
+  font-size: 1rem;
+  text-align: center;
+}
+</style>
+
+<script>
+// Gift box click logic
+const giftBox = document.getElementById('giftBox');
+const memoryContainer = document.getElementById('memoryContainer');
+
+giftBox.addEventListener('click', () => {
+  giftBox.classList.add('shake');
+  setTimeout(() => {
+    giftBox.classList.remove('shake');
+    giftBox.classList.add('explode');
+
+    // Floating hearts/flowers
+    const particles = ["💖","🌸","🌹"];
+    const boxRect = giftBox.getBoundingClientRect();
+
+    for(let i=0;i<15;i++){
+      const particle = document.createElement("div");
+      particle.textContent = particles[Math.floor(Math.random()*particles.length)];
+      particle.className = "emoji explosion";
+      particle.style.position = "absolute";
+      particle.style.left = (boxRect.left + boxRect.width/2) + "px";
+      particle.style.top = (boxRect.top + boxRect.height/2) + "px";
+      const angle = Math.random() * 2*Math.PI;
+      const distance = 80 + Math.random()*100;
+      particle.style.setProperty("--dx", Math.cos(angle)*distance + "px");
+      particle.style.setProperty("--dy", Math.sin(angle)*distance - 50 + "px");
+      particle.style.animation = "floatUpShort 1.5s forwards";
+      document.body.appendChild(particle);
+      setTimeout(()=>particle.remove(),1500);
+    }
+
+    // Show memories
+    memoryContainer.style.display = "flex";
+
+  }, 400);
+});
+
+// ===========================
+// Flip middle card
+// ===========================
+const flipCard = document.getElementById('flipCard');
+flipCard.addEventListener('click', () => {
+  flipCard.classList.toggle('flipped');
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<script>
+// ===========================
+// PASSWORD LOGIC
+// ===========================
+const enterBtn = document.getElementById("enterBtn");
+const passwordInput = document.getElementById("passwordInput");
+const passwordScreen = document.getElementById("password-screen");
+const content = document.getElementById("content");
+const errorText = document.getElementById("error");
+const bgMusic = document.getElementById("bgMusic");
+
+const correctPassword = "i love Karl";
+const clues = [
+  "Clue 1: Someone pogi 😎",
+  "Clue 2: Think of someone you lab or hindi edi waw🙄",
+  "Clue 3: I ___ ___? 😘",
+  "Clue 4: I love? 😤",
+  "Clue 5: DI moko love?? 😕"
+
+];
+
+let attempts = 0;
+
+enterBtn.addEventListener("click", () => {
+  const input = passwordInput.value.trim().toLowerCase();
+  
+  if(input === correctPassword.toLowerCase()){
+    // Hide password, show content, play music ONCE
+    passwordScreen.style.display = "none";
+    content.style.display = "block";
+    if(bgMusic){
+      bgMusic.currentTime = 0;
+      bgMusic.play().catch(() => {});
+    }
+  } else {
+    // Show clue or generic message
+    if(attempts < clues.length){
+      errorText.textContent = clues[attempts];
+    } else {
+      errorText.textContent = "Hmm… still not correct 💖";
+    }
+    attempts++;
+    passwordInput.value = "";
+  }
+});
+
+
+
+
+// ===========================
+// Floating Emojis
+// ===========================
+const emojiContainerMain = document.getElementById("floating-emojis-main");
+const emojis = ["💖","🌹","🍫","🧸","🍬","🍭","🍩","🍪","🌸"];
+
+function createFloatingEmoji() {
+  if (emojiContainerMain.querySelectorAll(".emoji").length > 20) return;
+  const emoji = document.createElement("div");
+  emoji.classList.add("emoji","floating");
+  emoji.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+  emoji.style.left = Math.random()*100 + "vw";
+  emoji.style.animationDuration = 10 + Math.random()*5 + "s";
+  emojiContainerMain.appendChild(emoji);
+  setTimeout(()=>emoji.remove(),15000);
+}
+setInterval(createFloatingEmoji,1500);
+
+// ===========================
+// Envelope Click
+// ===========================
+const envelope = document.getElementById("envelope");
+const letter = envelope.querySelector(".hiddenLetter");
+const message = envelope.querySelector(".envelopeMessage");
+const explosionZone = envelope.querySelector(".explosionZone");
+
+envelope.addEventListener("click", () => {
+  const envelopeEmoji = envelope.querySelector(".envelopeEmoji");
+  if (envelopeEmoji.style.display==="none") return;
+  envelopeEmoji.style.animation = "explode 0.5s forwards";
+  if(message) message.style.display="none";
+
+  setTimeout(()=>{
+    envelopeEmoji.style.display="none";
+    letter.style.display="block";
+    letter.style.animation="popLetter 0.6s ease forwards";
+
+    const containerRect = emojiContainerMain.getBoundingClientRect();
+    const zoneRect = explosionZone.getBoundingClientRect();
+
+    for(let i=0;i<10;i++){
+      const heart = document.createElement("div");
+      heart.textContent="💖";
+      heart.className="emoji explosion";
+      const angle=Math.random()*2*Math.PI;
+      const radius=Math.random()*(zoneRect.width/2);
+      heart.style.left=(zoneRect.left-containerRect.left+zoneRect.width/2+radius*Math.cos(angle))+"px";
+      heart.style.top=(zoneRect.top-containerRect.top+zoneRect.height/2+radius*Math.sin(angle))+"px";
+      heart.style.setProperty("--dx",`${(Math.random()-0.5)*200}px`);
+      heart.style.setProperty("--dy",`${-100-Math.random()*100}px`);
+      heart.style.animationDuration=2+Math.random()*2+"s";
+      emojiContainerMain.appendChild(heart);
+      setTimeout(()=>heart.remove(),4000);
+    }
+  },500);
+});
+
+// ===========================
+// Flower Boque Explosion + Shake
+// ===========================
+const boque = document.getElementById("boque");
+const flowerBoque = boque.querySelector(".flowerBoque");
+const boqueText = boque.querySelector(".boqueText");
+
+boque.addEventListener("click", () => {
+  // Shake and disappear
+  flowerBoque.style.transition="transform 0.15s ease-in-out";
+  flowerBoque.style.transform="rotate(-20deg) scale(1.2)";
+  setTimeout(()=>flowerBoque.style.transform="rotate(20deg) scale(1.2)",150);
+  setTimeout(()=>flowerBoque.style.transform="scale(0)",300);
+
+  // Scatter flowers
+  const flowers = ["🌹","🌷","🌸","🌻","💐","🌺"];
+  const sparkles = ["✨","💖"];
+  const totalParticles = 25;
+  const boqueRect = flowerBoque.getBoundingClientRect();
+  const containerRect = emojiContainerMain.getBoundingClientRect();
+
+  for(let i=0;i<totalParticles;i++){
+    const particle=document.createElement("div");
+    particle.textContent=Math.random()<0.7?flowers[Math.floor(Math.random()*flowers.length)]:
+      sparkles[Math.floor(Math.random()*sparkles.length)];
+    particle.className="emoji explosion";
+    const angle=Math.random()*2*Math.PI;
+    const distance=80+Math.random()*120;
+    const scale=0.8+Math.random()*0.8;
+    const rotate=Math.random()*360+"deg";
+
+    particle.style.left=(boqueRect.left-containerRect.left+boqueRect.width/2)+"px";
+    particle.style.top=(boqueRect.top-containerRect.top+boqueRect.height/2)+"px";
+
+    particle.style.setProperty("--dx",Math.cos(angle)*distance+"px");
+    particle.style.setProperty("--dy",Math.sin(angle)*distance+"px");
+    particle.style.setProperty("--scale",scale);
+    particle.style.setProperty("--rotate",rotate);
+    particle.style.animationDuration=1.5+Math.random()*2+"s";
+
+    emojiContainerMain.appendChild(particle);
+    setTimeout(()=>particle.remove(),5000);
+  }
+
+  // Show "I ❤️ YOU" message under boque
+  setTimeout(()=>{
+    boqueText.textContent="In a endless garden of flowers i will always pick you.";
+    boqueText.style.transition="opacity 1s ease, transform 1s ease";
+    boqueText.style.opacity="0";
+    boqueText.style.transform="translateY(-20px) scale(0.8)";
+    boqueText.style.display="block";
+    setTimeout(()=>{
+      boqueText.style.opacity="1";
+      boqueText.style.transform="translateY(0) scale(1)";
+    },50);
+  },600);
+});
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>
